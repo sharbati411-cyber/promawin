@@ -1,0 +1,1893 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>لومن فریم | درب ضد سرقت و پنجره‌های دوجداره</title>
+<meta name="description" content="فراموش کردن سر و صدای خیابان، اتلاف انرژی و نگرانی‌های امنیتی. سیستم یکپارچه درب‌های ضد سرقت و پنجره‌های دوجداره ما آرامش و امنیت خانه شما را تضمین می‌کند.">
+<meta property="og:title" content="لومن فریم | درب ضد سرقت و پنجره‌های دوجداره">
+<meta property="og:description" content="فراموش کردن سر و صدای خیابان، اتلاف انرژی و نگرانی‌های امنیتی. سیستم یکپارچه درب‌های ضد سرقت و پنجره‌های دوجداره ما آرامش و امنیت خانه شما را تضمین می‌کند.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://images.higgs.ai" crossorigin>
+<link rel="preload" as="font" href="./assets/fonts/YekanBakhFaNum-Regular.woff" type="font/woff" crossorigin>
+<link rel="preload" as="font" href="./assets/fonts/YekanBakhFaNum-SemiBold.woff" type="font/woff" crossorigin>
+<link rel="preload" as="font" href="./assets/fonts/YekanBakhFaNum-Bold.woff" type="font/woff" crossorigin>
+<link rel="preload" as="image" href="./src/assets/images/house_night_edited_1793867923697.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="./src/assets/images/house_morning_edited_1793867923534.jpg" fetchpriority="low">
+<style>
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-Thin.woff") format("woff");font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-Light.woff") format("woff");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-Regular.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-SemiBold.woff") format("woff");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-SemiBold.woff") format("woff");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-Bold.woff") format("woff");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-ExtraBold.woff") format("woff");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-Black.woff") format("woff");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"YekanBakhFaNum";src:url("./assets/fonts/YekanBakhFaNum-ExtraBlack.woff") format("woff");font-weight:950;font-style:normal;font-display:swap}
+:root{
+  --u:min(calc(100vw/1600),calc(100vh/900));
+  --img-bright:1;--img-contrast:1;--img-saturate:1;
+  --ink:#fff;
+  --nav:#eef1f6;
+  --soft:#dfe5ee;
+}
+body.is-day{
+  --ink:#14202f;
+  --nav:#1b2736;
+  --soft:#1b2736;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#0b1426}
+body{font-family:"YekanBakhFaNum",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit;background:none;border:0}
+button{cursor:pointer;touch-action:manipulation}
+.hero{position:relative;height:100svh;min-height:520px;overflow:hidden;isolation:isolate;background:#0b1426}
+
+/* 1. Wide-angle Camera Layer (moves in a pure straight line to Door or House Window) */
+.is-culled{
+  opacity:0!important;
+  pointer-events:none!important;
+}
+.camera{
+  position:absolute;inset:0;width:100%;height:100%;
+  transform-origin:0 0;
+  will-change:transform,opacity;
+  transform:translate3d(0,0,0) scale(1);
+  backface-visibility:hidden;
+  contain:layout style paint;
+}
+.layer,.layer img{position:absolute;inset:0;width:100%;height:100%}
+.layer img{display:block;object-fit:cover;object-position:50% 62%;backface-visibility:hidden}
+.sky img{filter:blur(calc(7*var(--u)));transform:scale(1.05) translateZ(0)}
+#skyN{opacity:1;will-change:opacity}
+.home{will-change:transform;transform:translate3d(0,0,0);backface-visibility:hidden}
+.home.has-img-filter{filter:brightness(var(--img-bright)) contrast(var(--img-contrast)) saturate(var(--img-saturate))}
+/* نگه داشتن تکسچر روز و شب در حافظه GPU با opacity به‌جای visibility:hidden برای حذف کامل لگ لحظه سوییچ */
+.home .set{
+  position:absolute;inset:0;
+  opacity:0;
+  pointer-events:none;
+  will-change:opacity;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+.home .set.is-on{
+  opacity:1;
+  pointer-events:auto;
+}
+.ground{-webkit-mask-image:linear-gradient(transparent 54%,#000 64%);mask-image:linear-gradient(transparent 54%,#000 64%)}
+.cut{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%;
+  -webkit-mask-size:cover;mask-size:cover;
+  -webkit-mask-position:50% 62%;mask-position:50% 62%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  transform:translateZ(0);
+}
+#cutM{
+  -webkit-mask-image:url("https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040416_e3b05fa4-cc80-4a43-afde-8a0a053933e9.png&w=2560&q=85");
+  mask-image:url("https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040416_e3b05fa4-cc80-4a43-afde-8a0a053933e9.png&w=2560&q=85");
+}
+#cutN{
+  -webkit-mask-image:url("https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040415_2ab95096-8c39-449f-b36c-17c2813815a4.png&w=2560&q=85");
+  mask-image:url("https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040415_2ab95096-8c39-449f-b36c-17c2813815a4.png&w=2560&q=85");
+}
+
+/* Mounted Door on the Wide-angle House View */
+.door-mount{
+  position:absolute;
+  z-index:3;
+  overflow:hidden;
+  border-radius:1px;
+  box-shadow:0 2px 10px rgba(0,0,0,.55);
+  cursor:pointer;
+}
+.door-mount img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;
+  filter:brightness(0.88) contrast(1.08);
+  transition:opacity .12s ease;
+}
+body.is-day .door-mount img{
+  filter:brightness(0.95) contrast(1.03);
+}
+.door-mount::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 6px 14px rgba(0,0,0,.48), inset 0 0 6px rgba(0,0,0,.35);
+  background:linear-gradient(180deg, rgba(255,192,105,.16) 0%, transparent 45%, rgba(0,0,0,.22) 100%);
+  transition:opacity .28s ease;
+}
+body.is-day .door-mount::after{
+  opacity:.35;
+}
+/* Clickable Window Hotspot directly on the House's Windows */
+.window-hotspot{
+  position:absolute;
+  z-index:3;
+  cursor:pointer;
+  border-radius:2px;
+  transition:box-shadow .25s ease;
+}
+.window-hotspot:hover{
+  box-shadow:0 0 0 1.5px rgba(232,242,166,.55), 0 0 24px rgba(232,242,166,.22);
+}
+
+/* 2. Dedicated High-Resolution Close-up Scene of the Porch & Door Frame */
+.closeup-scene{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:2;
+  pointer-events:none;
+  opacity:0;
+  transform-origin:50% 52%;
+  will-change:transform,opacity;
+  transform:translate3d(0,0,0) scale(1);
+  backface-visibility:hidden;
+  contain:layout style paint;
+}
+.closeup-scene.has-img-filter{
+  filter:brightness(var(--img-bright)) contrast(var(--img-contrast)) saturate(var(--img-saturate));
+}
+.closeup-set{
+  position:absolute;inset:0;width:100%;height:100%;
+  opacity:0;
+  pointer-events:none;
+  will-change:opacity;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+.closeup-set.is-on{
+  opacity:1;
+}
+.closeup-bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 62%;
+  display:block;
+  transform:translateZ(0);
+}
+.closeup-door-slot{
+  position:absolute;
+  z-index:2;
+  overflow:hidden;
+  border-radius:2px;
+  box-shadow:0 10px 30px rgba(0,0,0,.62), 0 0 0 1px rgba(0,0,0,.7);
+  pointer-events:auto;
+}
+.closeup-door-slot img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:fill;display:block;
+  transition:opacity .12s ease;
+}
+#closeSlotM img{filter:brightness(0.97) contrast(1.04)}
+#closeSlotN img{filter:brightness(0.89) contrast(1.07) sepia(0.08)}
+.closeup-door-slot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 10px 24px rgba(0,0,0,.46), inset 0 -4px 12px rgba(0,0,0,.35), inset 0 0 8px rgba(0,0,0,.38);
+  background:linear-gradient(180deg, rgba(255,198,112,.18) 0%, transparent 38%, rgba(0,0,0,.22) 100%);
+}
+body.is-day .closeup-door-slot::after{
+  opacity:.35;
+}
+
+/* 3. Full-Viewport Indoor Sofa Window Cutaway Scene (دوجداره و سه‌جداره در دو حالت روز آفتابی و شب) */
+.window-cutaway-scene{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:2;
+  pointer-events:none;
+  opacity:0;
+  transform-origin:50% 50%;
+  will-change:transform,opacity;
+  transform:scale(1.12);
+  background:#14100d;
+  backface-visibility:hidden;
+  contain:layout style paint;
+}
+.window-cutaway-scene.has-scene-filter{
+  filter:
+    brightness(var(--img-bright))
+    contrast(var(--img-contrast))
+    saturate(var(--img-saturate));
+}
+.win-time-set{
+  position:absolute;inset:0;width:100%;height:100%;
+  will-change:opacity;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+#winSetN{
+  opacity:1;
+}
+.window-cutaway-scene .win-main-img,
+.window-cutaway-scene .win-mobile-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 50%;
+  display:block;
+  will-change:opacity;
+  transform:translateZ(0);
+  transition:opacity .22s cubic-bezier(.16,1,.3,1);
+}
+.window-cutaway-scene .win-mobile-img{
+  display:none;
+  object-position:46% 50%;
+}
+.window-cutaway-scene .is-double-img{
+  opacity:0;
+}
+.window-cutaway-scene.is-double .is-double-img{
+  opacity:1;
+}
+.window-cutaway-scene.is-double .is-triple-img{
+  opacity:0;
+}
+
+/* لایه برچسب‌ها و خطوط راهنمای اختصاصی موبایل روی تصویر تمام‌صفحه پنجره */
+.win-mobile-callouts{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:3;
+  pointer-events:none;
+  display:none;
+}
+.win-mobile-lines{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;
+  overflow:visible;
+}
+.win-m-pill{
+  position:absolute;
+  left:10px;
+  transform:translateY(-50%);
+  padding:6px 11px;
+  border-radius:9px;
+  background:linear-gradient(180deg, rgba(33,46,64,.96) 0%, rgba(22,32,46,.96) 100%);
+  border:1.5px solid rgba(255,255,255,.88);
+  color:#fff;
+  font-size:11.5px;
+  font-weight:600;
+  line-height:1.32;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.46);
+  white-space:nowrap;
+}
+.win-m-pill.is-multiline{
+  white-space:normal;
+  padding:6px 9px;
+  font-size:11px;
+  line-height:1.3;
+}
+
+.tilt{position:absolute;inset:0;pointer-events:none;-webkit-backdrop-filter:blur(calc(9*var(--u)));backdrop-filter:blur(calc(9*var(--u)));-webkit-mask-image:linear-gradient(transparent 70%,#000 92%);mask-image:linear-gradient(transparent 70%,#000 92%);opacity:1;will-change:opacity}
+#fog{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;opacity:1;will-change:opacity}
+.ui{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.ui a,.ui button{pointer-events:auto}
+.bar{width:100%;display:flex;align-items:center;padding:calc(20*var(--u)) calc(38*var(--u)) 0;color:var(--nav);transition:color .28s ease,opacity .22s ease}
+.logo{display:flex;align-items:center;gap:calc(10*var(--u));font-size:calc(24*var(--u));font-weight:600;letter-spacing:-.01em;color:var(--ink);flex:1 1 0;white-space:nowrap;transition:color .28s ease}
+.logo svg{width:calc(38*var(--u));height:calc(38*var(--u));flex:none}
+.logo svg g{fill:#d8ee8e;transition:fill .28s ease}
+body.is-day .logo svg g{fill:#6d8f2a}
+.links{display:flex;gap:calc(30*var(--u));list-style:none;font-size:calc(16*var(--u));font-weight:500;will-change:opacity}
+.links button{white-space:nowrap;transition:opacity .2s}
+.links button:hover,.side>button:first-child:hover{opacity:.75}
+.side{flex:1 1 0;display:flex;align-items:center;justify-content:flex-end;gap:calc(24*var(--u));font-size:calc(16*var(--u));font-weight:500}
+.side>button:first-child{white-space:nowrap;transition:opacity .2s}
+.cta{display:inline-flex;align-items:center;justify-content:center;height:calc(46*var(--u));padding:0 calc(26*var(--u));border-radius:99px;white-space:nowrap;
+  background:#fff;color:#0d1117;transition:transform .22s,background-color .28s ease,color .28s ease,opacity .22s ease}
+body.is-day .cta{background:#0d1117;color:#fff}
+.cta:hover{transform:translateY(-1px)}
+h1{
+  margin-top:calc(48*var(--u));text-align:center;font-size:calc(58*var(--u));line-height:1.18;font-weight:600;letter-spacing:-.015em;color:var(--ink);
+  pointer-events:none;will-change:transform,opacity;transition:color .28s ease;
+}
+h1 span{display:block}
+h1 i{font-style:normal;color:#fff;transition:color .28s ease}
+body.is-day h1 i{color:#4b5868}
+h1 .y{display:inline}
+
+/* ============================================================
+   LIQUID GLASS NEXT / PREV BUTTONS & LEFT-CORNER SELECTORS
+   ============================================================ */
+.door-stage-ui,.window-stage-ui{
+  position:fixed;inset:0;z-index:4;pointer-events:none;
+  visibility:visible;
+  will-change:opacity;
+}
+.door-stage-ui{opacity:0}
+.window-stage-ui{opacity:0}
+.door-stage-ui.is-hidden,.window-stage-ui.is-hidden{pointer-events:none;visibility:hidden}
+
+/* Liquid Glass Prev / Next Buttons */
+.door-nav-btn{
+  position:absolute;
+  width:60px;height:60px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(120% 120% at 25% 18%, rgba(255,255,255,.42) 0%, rgba(255,255,255,.10) 46%, rgba(255,255,255,.04) 72%, rgba(255,255,255,.22) 100%);
+  border:1px solid rgba(255,255,255,.45);
+  color:#fff;
+  -webkit-backdrop-filter:blur(22px) saturate(190%) brightness(1.08);
+  backdrop-filter:blur(22px) saturate(190%) brightness(1.08);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.38),
+    0 2px 8px rgba(0,0,0,.22),
+    inset 0 2px 2px rgba(255,255,255,.78),
+    inset 0 -2px 4px rgba(255,255,255,.25),
+    inset 2px 0 3px rgba(255,255,255,.32);
+  transition:transform .24s cubic-bezier(.16,1,.3,1), box-shadow .24s ease, background .24s ease;
+  pointer-events:auto;
+}
+.door-nav-btn::before{
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:inherit;
+  background:linear-gradient(165deg, rgba(255,255,255,.32) 0%, transparent 45%, rgba(255,255,255,.12) 100%);
+  pointer-events:none;
+}
+.door-nav-btn:hover{
+  transform:translate(-50%, -50%) scale(1.08)!important;
+  box-shadow:
+    0 22px 48px rgba(0,0,0,.48),
+    0 0 24px rgba(255,255,255,.24),
+    inset 0 2.5px 3px rgba(255,255,255,.92),
+    inset 0 -2px 5px rgba(226,238,159,.45);
+  border-color:rgba(255,255,255,.75);
+}
+.door-nav-btn:active{
+  transform:translate(-50%, -50%) scale(0.95)!important;
+}
+.door-nav-btn svg{
+  position:relative;z-index:1;
+  width:24px;height:24px;
+  stroke:currentColor;stroke-width:2.4;fill:none;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));
+}
+
+/* Corner Selector Panel in the Left Corner (گوشه سمت چپ در دسکتاپ / بالای صفحه در موبایل) */
+.door-corner-panel,.win-corner-panel{
+  position:fixed;
+  left:20px;
+  bottom:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:13px 15px;
+  border-radius:22px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.22) 0%, rgba(15,24,40,.72) 55%, rgba(255,255,255,.14) 100%);
+  border:1px solid rgba(255,255,255,.36);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  backdrop-filter:blur(24px) saturate(180%);
+  box-shadow:
+    0 20px 44px rgba(0,0,0,.42),
+    inset 0 1.5px 1px rgba(255,255,255,.65),
+    inset 0 -1px 2px rgba(255,255,255,.18);
+  pointer-events:auto;
+  width:min(330px, calc(100vw - 32px));
+  max-width:calc(100vw - 32px);
+}
+.door-corner-panel{
+  width:min(285px, calc(100vw - 32px));
+}
+.door-corner-info{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  text-align:right;
+  width:100%;
+  min-width:0;
+}
+.door-corner-info strong{
+  font-size:13.5px;
+  font-weight:600;
+  color:#f4f9d2;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:block;
+  width:100%;
+}
+.door-corner-info span{
+  font-size:11.5px;
+  color:rgba(255,255,255,.8);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:block;
+  width:100%;
+}
+.door-thumbs{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.door-thumb{
+  width:52px;height:80px;border-radius:11px;overflow:hidden;
+  border:1.5px solid rgba(255,255,255,.28);
+  opacity:.68;
+  transition:all .22s cubic-bezier(.16,1,.3,1);
+  position:relative;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  flex:0 0 auto;
+}
+.door-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.door-thumb:hover{opacity:.92;transform:translateY(-2px)}
+.door-thumb.is-active{
+  border-color:#e8f2a6;
+  border-width:2px;
+  opacity:1;
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 10px 22px rgba(0,0,0,.48), 0 0 12px rgba(232,242,166,.35);
+}
+
+/* Glazing Switcher Pills inside Window Corner Panel (دوجداره / سه‌جداره) */
+.glaze-switch{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:8px;
+  width:100%;
+}
+.glaze-btn{
+  min-width:0;
+  width:100%;
+  padding:8px 8px;
+  border-radius:13px;
+  background:rgba(255,255,255,.09);
+  border:1.5px solid rgba(255,255,255,.24);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  transition:all .2s cubic-bezier(.16,1,.3,1);
+  overflow:hidden;
+  text-align:center;
+}
+.glaze-btn b{
+  font-size:12.5px;
+  font-weight:600;
+  line-height:1.3;
+  display:block;
+  width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.glaze-btn small{
+  font-size:10px;
+  opacity:.78;
+  line-height:1.25;
+  display:block;
+  width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.glaze-btn.is-active{
+  background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);
+  color:#1c2316;
+  border-color:#fff;
+  box-shadow:0 8px 18px rgba(0,0,0,.35);
+}
+
+/* ============================================================
+   BOTTOM FLOOR BAR (چسبیده به کف صفحه: روز، شب، مشاهده درب، مشاهده پنجره)
+   ============================================================ */
+.dock{
+  margin-top:auto;
+  padding:0 12px 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  width:100%;
+}
+.cap{
+  text-align:center;
+  font-size:calc(15*var(--u));
+  line-height:1.45;
+  color:var(--soft);
+  max-height:60px;
+  overflow:hidden;
+  pointer-events:none;
+  will-change:opacity;
+  transition:color .28s ease,opacity .18s ease;
+}
+.floor-bar{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.12fr) minmax(0,1.12fr);
+  align-items:stretch;
+  width:min(860px, calc(100vw - 24px));
+  max-width:100%;
+  height:64px;
+  padding:4px;
+  gap:5px;
+  border-radius:20px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.22) 0%, rgba(95,110,122,.36) 52%, rgba(255,255,255,.16) 100%);
+  border:1px solid rgba(255,255,255,.32);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.42),
+    inset 0 1.5px 1px rgba(255,255,255,.62),
+    inset 0 -1px 2px rgba(255,255,255,.18);
+}
+.floor-btn{
+  position:relative;
+  min-width:0;
+  max-width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  border-radius:15px;
+  color:#fff;
+  overflow:hidden;
+  padding:0 10px;
+  text-align:center;
+}
+.floor-btn.day-night::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);
+  box-shadow:inset 0 0 18px rgba(255,255,255,.68);
+  opacity:0;
+  will-change:opacity;
+  transition:opacity .22s cubic-bezier(.16,1,.3,1);
+}
+.floor-btn.day-night[aria-pressed="true"]::before{
+  opacity:1;
+}
+.floor-btn.day-night b,
+.floor-btn.day-night small{
+  position:relative;
+  color:#fff;
+  transition:color .22s ease;
+}
+.floor-btn.day-night[aria-pressed="true"] b,
+.floor-btn.day-night[aria-pressed="true"] small{
+  color:#1c2316;
+}
+.floor-btn b{
+  font-size:14.5px;
+  font-weight:600;
+  line-height:1.25;
+  display:block;
+  max-width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.floor-btn small{
+  font-size:11px;
+  opacity:.78;
+  line-height:1.2;
+  display:block;
+  max-width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* دکمه‌های مشاهده درب‌ها و مشاهده پنجره‌ها در نوار کف صفحه */
+.floor-btn.zoom-action{
+  flex-direction:row;
+  justify-content:center;
+  gap:6px;
+  background:
+    radial-gradient(120% 120% at 25% 20%, rgba(255,255,255,.32) 0%, rgba(255,255,255,.10) 60%, rgba(255,255,255,.18) 100%);
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.65);
+  color:#fff;
+  font-size:13.5px;
+  font-weight:600;
+  transition:background .2s, transform .2s, border-color .2s;
+}
+.floor-btn.zoom-action span{
+  display:block;
+  min-width:0;
+  max-width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.floor-btn.zoom-action:hover{
+  background:rgba(255,255,255,.26);
+  border-color:rgba(255,255,255,.6);
+}
+.floor-btn.zoom-action.is-active{
+  background:linear-gradient(160deg, rgba(247,248,220,.95), rgba(226,238,159,.9));
+  color:#1c2316;
+  border-color:#fff;
+}
+.floor-btn.zoom-action svg{
+  width:17px;height:17px;stroke:currentColor;stroke-width:2.1;fill:none;flex:0 0 17px;
+}
+.floor-btn:focus-visible,.bar button:focus-visible,.bar a:focus-visible,.door-nav-btn:focus-visible{outline:2px solid #fff;outline-offset:-3px}
+
+/* Interactive Info, Image Editor & Quote Modal */
+.modal-backdrop{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(8,14,26,.62);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease}
+.modal-backdrop.is-open{opacity:1;visibility:visible}
+.modal-card{width:100%;max-width:660px;max-height:90svh;overflow-y:auto;border-radius:20px;padding:24px;background:rgba(18,28,45,.92);border:1px solid rgba(255,255,255,.18);color:#f3f6fa;box-shadow:0 24px 60px rgba(0,0,0,.45);transform:translateY(10px);transition:transform .22s ease}
+.modal-backdrop.is-open .modal-card{transform:translateY(0)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.modal-head h2{font-size:18px;font-weight:600;color:#fff;line-height:1.35}
+.modal-close{width:36px;height:36px;flex:0 0 36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;font-size:18px;transition:background .2s}
+.modal-close:hover{background:rgba(255,255,255,.16)}
+.modal-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding:4px;border-radius:12px;background:rgba(255,255,255,.06)}
+.modal-tabs button{flex:1 1 auto;min-width:0;padding:8px 10px;border-radius:9px;font-size:13px;font-weight:500;color:rgba(255,255,255,.72);transition:all .18s;white-space:nowrap;text-align:center}
+.modal-tabs button.active{background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);color:#1c2316;font-weight:600}
+.modal-body{margin-top:16px;font-size:14px;line-height:1.7;color:#dbe2ec}
+.modal-pane{display:none}
+.modal-pane.is-active-pane{display:block}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.spec-item{padding:14px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)}
+.spec-item strong{display:block;font-size:14.5px;color:#e8f2a6;margin-bottom:4px}
+.spec-item span{font-size:13px;color:#c5d0de}
+.quote-form{display:grid;gap:12px;margin-top:12px}
+.quote-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field label{display:flex;justify-content:space-between;font-size:12.5px;color:#b8c4d4;margin-bottom:5px}
+.field select,.field input[type="number"],.field input[type="tel"]{width:100%;height:42px;padding:0 12px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff;font-size:13.5px}
+.field input[type="range"]{width:100%;accent-color:#e2ee9f;cursor:pointer}
+.field select option{background:#121c2d;color:#fff}
+.quote-estimate{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:12px 14px;border-radius:12px;background:rgba(226,238,159,.1);border:1px solid rgba(226,238,159,.28)}
+.quote-estimate strong{font-size:16px;color:#e8f2a6;font-variant-numeric:tabular-nums}
+.quote-submit{width:100%;padding:0 12px;height:44px;border-radius:12px;background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);color:#1c2316;font-weight:600;font-size:14px;transition:transform .18s;text-align:center}
+.quote-submit:hover{transform:translateY(-1px)}
+.quote-msg{font-size:13px;color:#cbe896;text-align:center;min-height:20px}
+
+/* جلوگیری از تداخل پنل گوشه چپ با نوار کف صفحه در لپ‌تاپ‌ها */
+@media (min-width:821px) and (max-width:1480px){
+  .door-corner-panel,.win-corner-panel{
+    bottom:84px;
+  }
+}
+
+/* تبلت و موبایل (تا عرض ۸۲۰ پیکسل): نمایش ۱۰۰٪ تمام‌صفحه مقطع پنجره با چیدمان کاملاً مرتب */
+@media (max-width:820px){
+  :root{--u:1px}
+  .bar{
+    padding:12px 14px 0;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .bar.is-zoomed-mobile{
+    opacity:0;
+  }
+  .bar.is-zoomed-mobile,.bar.is-zoomed-mobile a,.bar.is-zoomed-mobile button{
+    pointer-events:none!important;
+  }
+  .logo{font-size:18px;gap:7px;flex:0 1 auto;min-width:0}
+  .logo svg{width:28px;height:28px}
+  .links,.side>button:first-child{display:none}
+  .side{flex:0 0 auto}
+  .cta{height:36px;padding:0 14px;font-size:12.5px}
+  h1{margin-top:18px;padding:0 14px;font-size:clamp(22px,6.8vw,38px);line-height:1.25}
+  .layer img,.home .cut{object-position:72% 62%!important;-webkit-mask-position:72% 62%!important;mask-position:72% 62%!important}
+
+  /* در موبایل تصویر تمیز مقطع پنجره به‌صورت ۱۰۰٪ تمام‌صفحه (cover) همراه با کادرهای راهنمای مرتب نمایش داده می‌شود */
+  .window-cutaway-scene .win-main-img{display:none}
+  .window-cutaway-scene .win-mobile-img{
+    display:block;
+    object-fit:cover;
+    object-position:46% 50%;
+  }
+  .win-mobile-callouts{
+    display:block;
+  }
+
+  /* در نمای پنجره موبایل، دکمه‌های دوجداره و سه‌جداره در کارت بالای صفحه هستند و نیازی به دکمه‌های دایره‌ای کناری نیست */
+  #prevWinBtn,#nextWinBtn{
+    display:none!important;
+  }
+
+  /* پنل انتخاب درب و پنجره در بالای صفحه و کاملاً درون عرض موبایل */
+  .door-corner-panel,.win-corner-panel{
+    left:50%;
+    right:auto;
+    bottom:auto;
+    top:12px;
+    transform:translateX(-50%);
+    align-items:center;
+    text-align:center;
+    padding:8px 10px;
+    gap:6px;
+    border-radius:16px;
+    width:min(340px, calc(100vw - 20px));
+    max-width:calc(100vw - 20px);
+  }
+  .door-corner-info{
+    align-items:center;
+    text-align:center;
+  }
+  .door-corner-info strong{font-size:12px}
+  .door-corner-info span{font-size:10.5px}
+  .door-thumbs{justify-content:center;gap:8px}
+  .door-thumb{width:34px;height:52px;border-radius:8px}
+
+  .glaze-switch{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:6px;
+    width:100%;
+  }
+  .glaze-btn{
+    padding:6px 6px;
+    border-radius:10px;
+  }
+  .glaze-btn b{font-size:11.5px}
+  .glaze-btn small{font-size:9.5px}
+
+  .door-nav-btn{width:40px;height:40px}
+  .door-nav-btn svg{width:20px;height:20px}
+
+  .dock{padding:0 10px 8px;gap:6px}
+  .cap{font-size:12px;max-width:360px;padding:0 6px}
+  .cap br{display:none}
+
+  .floor-bar{
+    width:100%;
+    height:54px;
+    border-radius:16px;
+    gap:4px;
+    padding:4px;
+  }
+  .floor-btn{padding:0 6px;border-radius:12px}
+  .floor-btn b{font-size:12px}
+  .floor-btn small{display:none}
+  .floor-btn.zoom-action{font-size:11.5px;gap:4px;padding:0 6px}
+  .floor-btn.zoom-action svg{width:14px;height:14px;flex:0 0 14px}
+
+  .modal-card{padding:18px 14px;border-radius:16px}
+  .modal-head h2{font-size:15.5px}
+  .modal-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+  .modal-tabs button{font-size:12px;padding:7px 6px}
+  .spec-grid,.quote-row{grid-template-columns:1fr}
+}
+
+/* گوشی‌های موبایل (تا عرض ۶۴۰ پیکسل): چیدمان ۲×۲ برای نوار پایین تا تمام نوشته‌ها کاملاً درون دکمه‌ها قرار بگیرند */
+@media (max-width:640px){
+  .floor-bar{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    height:auto;
+    max-width:440px;
+    gap:5px;
+    padding:5px;
+    border-radius:16px;
+  }
+  .floor-btn{
+    height:38px;
+    padding:0 8px;
+    border-radius:11px;
+  }
+  .floor-btn b{
+    font-size:12px;
+  }
+  .floor-btn.zoom-action{
+    font-size:11.5px;
+    gap:5px;
+    padding:0 8px;
+  }
+  .floor-btn.zoom-action svg{
+    width:14px;
+    height:14px;
+    flex:0 0 14px;
+  }
+}
+</style>
+</head>
+<body>
+<main class="hero">
+  <!-- ۱. لایه نمای کلی خانه که با حرکت کاملاً خطی و واقع‌گرایانه روی چهارچوب درب یا پنجره‌های خانه زوم می‌شود -->
+  <div class="camera" id="camera">
+    <div class="layer sky">
+      <img id="skyM" alt="" referrerpolicy="no-referrer" fetchpriority="low" decoding="async" src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040343_a73684b4-3f71-4613-a843-c8be80fb1211.png&amp;w=1600&amp;q=80">
+      <img id="skyN" alt="" referrerpolicy="no-referrer" fetchpriority="high" decoding="async" src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040308_f31964ab-ed8e-4ea4-90eb-3226c0859936.png&amp;w=1600&amp;q=80">
+    </div>
+    <div class="layer home" id="homeLayer">
+      <div class="set" id="setM">
+        <div class="layer ground"><img id="gndM" alt="" referrerpolicy="no-referrer" fetchpriority="low" decoding="async" src="./src/assets/images/house_morning_edited_1793867923534.jpg"></div>
+        <img class="cut" id="cutM" referrerpolicy="no-referrer" fetchpriority="low" decoding="async" alt="نمای ویلای مدرن با درب ضد سرقت لوکس چوب گردو و پنجره‌های دوجداره قدی در نور صبحگاهی" src="./src/assets/images/house_morning_edited_1793867923534.jpg">
+      </div>
+      <div class="set is-on" id="setN">
+        <div class="layer ground"><img id="gndN" alt="" referrerpolicy="no-referrer" fetchpriority="high" decoding="async" src="./src/assets/images/house_night_edited_1793867923697.jpg"></div>
+        <img class="cut" id="cutN" referrerpolicy="no-referrer" fetchpriority="high" decoding="async" alt="نمای ویلا در شب با پنجره‌های دوجداره قدی روشن و درب ضد سرقت مجهز به نورپردازی امنیتی" src="./src/assets/images/house_night_edited_1793867923697.jpg">
+      </div>
+      <!-- درب نصب‌شده روی نمای کلی خانه -->
+      <div class="door-mount" id="doorMount" title="کلیک برای زوم روی چهارچوب درب">
+        <img id="doorMountImg" fetchpriority="high" decoding="async" src="./assets/aistudio/images__1__425ef8f4.jfif" alt="نمای درب ضد سرقت روی چهارچوب خانه">
+      </div>
+      <!-- ناحیه تعاملی پنجره‌های خود خانه -->
+      <div class="window-hotspot" id="winHotspot" title="کلیک برای زوم به سمت پنجره و مشاهده مقطع دوجداره و سه‌جداره"></div>
+    </div>
+    <div class="tilt"></div>
+  </div>
+
+  <!-- ۲. لایه اختصاصی کلوزآپ با کیفیت فوق‌العاده بالا (8K) از ایوان و چهارچوب درب در حالت زوم درب -->
+  <div class="closeup-scene is-culled" id="closeupScene">
+    <div class="closeup-set" id="closeSetM">
+      <img class="closeup-bg" id="closeBgM" decoding="async" data-src="./src/assets/images/porch_closeup_morning_1793870144339.jpg" alt="نمای نزدیک با کیفیت بالا از چهارچوب درب در روز">
+      <div class="closeup-door-slot" id="closeSlotM">
+        <img id="closeDoorImgM" decoding="async" src="./assets/aistudio/images__1__425ef8f4.jfif" alt="درب ضد سرقت روی چهارچوب در روز">
+      </div>
+    </div>
+    <div class="closeup-set is-on" id="closeSetN">
+      <img class="closeup-bg" id="closeBgN" decoding="async" data-src="./src/assets/images/porch_closeup_night_1793870145326.jpg" alt="نمای نزدیک با کیفیت بالا از چهارچوب درب در شب">
+      <div class="closeup-door-slot" id="closeSlotN">
+        <img id="closeDoorImgN" decoding="async" src="./assets/aistudio/images__1__425ef8f4.jfif" alt="درب ضد سرقت روی چهارچوب در شب">
+      </div>
+    </div>
+  </div>
+
+  <!-- ۳. لایه اختصاصی مقطع پنجره با پس‌زمینه مبلمان داخلی در دو حالت روز (چراغ خاموش و بیرون آفتابی) و شب (چراغ روشن) و دو حالت سه‌جداره و دوجداره -->
+  <div class="window-cutaway-scene is-culled" id="windowScene">
+    <!-- حالت روز (Morning/Day: فضای داخل روشن، چراغ‌ها خاموش، هوای بیرون پنجره آفتابی) -->
+    <div class="win-time-set is-culled" id="winSetM">
+      <img class="win-main-img is-triple-img" id="winImgTripleM" decoding="async" data-src="./src/assets/images/window_cutaway_day_triple_1793904541186.jpg" alt="نمای روز مقطع پنجره سه‌جداره با هوای آفتابی بیرون و چراغ خاموش">
+      <img class="win-main-img is-double-img" id="winImgDoubleM" decoding="async" data-src="./src/assets/images/window_cutaway_day_double_1793904542573.jpg" alt="نمای روز مقطع پنجره دوجداره با هوای آفتابی بیرون و چراغ خاموش">
+      <img class="win-mobile-img is-triple-img" id="winImgTripleCleanM" decoding="async" data-src="./src/assets/images/window_cutaway_day_clean_triple_1793904545635.jpg" alt="نمای تمام‌صفحه روز مقطع پنجره سه‌جداره در موبایل">
+      <img class="win-mobile-img is-double-img" id="winImgDoubleCleanM" decoding="async" data-src="./src/assets/images/window_cutaway_day_clean_double_1793904545872.jpg" alt="نمای تمام‌صفحه روز مقطع پنجره دوجداره در موبایل">
+    </div>
+    <!-- حالت شب (Night: فضای داخل گرم با چراغ آباژور روشن و هوای بیرون شبانه) -->
+    <div class="win-time-set" id="winSetN">
+      <img class="win-main-img is-triple-img" id="winImgTripleN" decoding="async" data-src="./assets/aistudio/Indoor_sofa_background_theme_ded1f48f_2K_68a535ee.jpg" alt="نمای شب مقطع پنجره سه‌جداره با سه لایه شیشه و دو فضای عایق">
+      <img class="win-main-img is-double-img" id="winImgDoubleN" decoding="async" data-src="./src/assets/images/window_cutaway_double_glazed_1793901707034.jpg" alt="نمای شب مقطع پنجره دوجداره با دو لایه شیشه و یک فضای عایق">
+      <img class="win-mobile-img is-triple-img" id="winImgTripleCleanN" decoding="async" data-src="./src/assets/images/window_cutaway_clean_triple_1793903512138.jpg" alt="نمای تمام‌صفحه شب مقطع پنجره سه‌جداره در موبایل">
+      <img class="win-mobile-img is-double-img" id="winImgDoubleCleanN" decoding="async" data-src="./src/assets/images/window_cutaway_clean_double_1793903513255.jpg" alt="نمای تمام‌صفحه شب مقطع پنجره دوجداره در موبایل">
+    </div>
+    <!-- لایه برچسب‌ها و خطوط اشاره‌گر هوشمند و مرتب موبایل -->
+    <div class="win-mobile-callouts" id="winMobileCallouts" aria-hidden="true">
+      <svg class="win-mobile-lines" id="winMobileLines"></svg>
+      <div class="win-m-pill" id="mCallout1">سه لایه شیشه</div>
+      <div class="win-m-pill" id="mCallout2">دو فضای عایق</div>
+      <div class="win-m-pill is-multiline" id="mCallout3">پروفیل UPVC<br>مناسب سه‌جداره</div>
+    </div>
+  </div>
+
+  <canvas id="fog" aria-hidden="true"></canvas>
+
+  <!-- رابط کاربری حالت زوم روی چهارچوب درب -->
+  <div class="door-stage-ui is-hidden" id="doorStageUI">
+    <button type="button" class="door-nav-btn" id="prevDoorBtn" aria-label="درب قبلی" title="درب قبلی">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <button type="button" class="door-nav-btn" id="nextDoorBtn" aria-label="درب بعدی" title="درب بعدی">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+
+    <div class="door-corner-panel" id="doorCornerPanel">
+      <div class="door-corner-info">
+        <strong id="doorTitle">مدل ۱ از ۳: کلاسیک چهارقاب گردو</strong>
+        <span id="doorSub">روکش چوب طبیعی گردو · یراق طلایی</span>
+      </div>
+      <div class="door-thumbs" id="doorThumbs">
+        <button type="button" class="door-thumb is-active" data-door-idx="0" title="مدل ۱: کلاسیک چهارقاب گردو">
+          <img decoding="async" loading="lazy" src="./assets/aistudio/images__1__425ef8f4.jfif" alt="درب ۱">
+        </button>
+        <button type="button" class="door-thumb" data-door-idx="1" title="مدل ۲: مدرن شیاردار افقی بلوط">
+          <img decoding="async" loading="lazy" src="./assets/aistudio/images__2__886d0ea2.jfif" alt="درب ۲">
+        </button>
+        <button type="button" class="door-thumb" data-door-idx="2" title="مدل ۳: ترکیبی لوور مشکی و ترمووود">
+          <img decoding="async" loading="lazy" src="./assets/aistudio/images_7f757af8.jfif" alt="درب ۳">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- رابط کاربری حالت زوم روی پنجره (سوییچ بین دوجداره و سه‌جداره) -->
+  <div class="window-stage-ui is-hidden" id="windowStageUI">
+    <!-- دکمه‌های چپ و راست Liquid Glass در دسکتاپ برای جابه‌جایی سریع بین دوجداره و سه‌جداره -->
+    <button type="button" class="door-nav-btn" id="prevWinBtn" aria-label="حالت قبلی شیشه" title="تغییر دوجداره / سه‌جداره">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <button type="button" class="door-nav-btn" id="nextWinBtn" aria-label="حالت بعدی شیشه" title="تغییر دوجداره / سه‌جداره">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+
+    <!-- پنل انتخاب دوجداره و سه‌جداره (گوشه سمت چپ در دسکتاپ / بالای صفحه در موبایل) -->
+    <div class="win-corner-panel" id="winCornerPanel">
+      <div class="door-corner-info">
+        <strong id="winTitle">مقطع پنجره سه‌جداره سوپر آکوستیک</strong>
+        <span id="winSub">۳ لایه شیشه · ۲ فضای عایق آرگون · کاهش ۴۷ دسی‌بل صدا</span>
+      </div>
+      <div class="glaze-switch" role="group" aria-label="انتخاب نوع شیشه دوجداره یا سه‌جداره">
+        <button type="button" class="glaze-btn" id="btnDoubleGlaze" data-glaze="double">
+          <b>پنجره دوجداره</b>
+          <small>۲ لایه شیشه · ۱ فضای عایق</small>
+        </button>
+        <button type="button" class="glaze-btn is-active" id="btnTripleGlaze" data-glaze="triple">
+          <b>پنجره سه‌جداره</b>
+          <small>۳ لایه شیشه · ۲ فضای عایق</small>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui">
+    <header class="bar" id="topBar">
+      <a class="logo" href="#top" id="logoBtn" aria-label="لومن فریم">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><g><circle cx="20" cy="20" r="0"/><path id="ray" d="M18.3 3.5h3.4l.9 8.4h-5.2Z"/><use href="#ray" transform="rotate(30 20 20)"/><use href="#ray" transform="rotate(60 20 20)"/><use href="#ray" transform="rotate(90 20 20)"/><use href="#ray" transform="rotate(120 20 20)"/><use href="#ray" transform="rotate(150 20 20)"/><use href="#ray" transform="rotate(180 20 20)"/><use href="#ray" transform="rotate(210 20 20)"/><use href="#ray" transform="rotate(240 20 20)"/><use href="#ray" transform="rotate(270 20 20)"/><use href="#ray" transform="rotate(300 20 20)"/><use href="#ray" transform="rotate(330 20 20)"/></g></svg>
+        لومن فریم
+      </a>
+      <ul class="links">
+        <li><button type="button" id="navZoomDoorsBtn">مشاهده درب‌ها روی نما</button></li>
+        <li><button type="button" id="navZoomWinBtn">مشاهده پنجره‌ها</button></li>
+        <li><button type="button" data-tab="insulation">فناوری عایق</button></li>
+        <li><button type="button" data-tab="editor">تنظیمات تصویر</button></li>
+        <li><button type="button" data-tab="quote">لیست قیمت</button></li>
+      </ul>
+      <div class="side">
+        <button type="button" data-tab="doors">مشخصات فنی</button>
+        <button type="button" class="cta" data-tab="quote">استعلام قیمت آنی</button>
+      </div>
+    </header>
+    <h1>
+      <span class="l1">امنیت مطلق و آرامش بی‌صدا</span>
+      <span><i>با درب ضد سرقت و</i> <span class="y">پنجره دوجداره</span></span>
+    </h1>
+
+    <!-- نوار چسبیده به کف صفحه شامل ۴ دکمه: عایق روزانه، امنیت شبانه، مشاهده درب‌ها، مشاهده پنجره‌ها -->
+    <div class="dock">
+      <p class="cap">فراموش کردن سر و صدای خیابان، اتلاف انرژی و نگرانی‌های امنیتی. سیستم یکپارچه درب‌های ضد سرقت<br>و پنجره‌های دوجداره ترمال‌بریک ما، آرامش و امنیت خانه شما را برای سالیان طولانی تضمین می‌کند.</p>
+      <div class="floor-bar" role="group" aria-label="کنترل نمای روز، شب، چهارچوب درب و آناتومی پنجره">
+        <button id="bm" class="floor-btn day-night" type="button" aria-pressed="false">
+          <b>عایق روزانه</b>
+          <small>نمای روز · ۴۷ دسی‌بل سکوت</small>
+        </button>
+        <button id="bn" class="floor-btn day-night" type="button" aria-pressed="true">
+          <b>امنیت شبانه</b>
+          <small>نمای شب · شیشه و درب ایمن</small>
+        </button>
+        <button id="toggleDoorZoomBtn" class="floor-btn zoom-action" type="button">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 21h16M6 21V5a2 2 0 012-2h8a2 2 0 012 2v16M14 12h.01"/></svg>
+          <span id="toggleDoorZoomLabel">مشاهده درب‌ها</span>
+        </button>
+        <button id="toggleWinZoomBtn" class="floor-btn zoom-action" type="button">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+          <span id="toggleWinZoomLabel">مشاهده پنجره‌ها</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- مشخصات فنی، ویرایشگر تصویر و استعلام قیمت آنی -->
+<div class="modal-backdrop" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2 id="modalTitle">سیستم‌های درب ضد سرقت و پنجره دوجداره لومن فریم</h2>
+      <button type="button" class="modal-close" id="closeModal" aria-label="بستن">✕</button>
+    </div>
+    <div class="modal-tabs" role="tablist">
+      <button type="button" class="active" data-switch="doors">درب ضد سرقت</button>
+      <button type="button" data-switch="windows">پنجره دوجداره</button>
+      <button type="button" data-switch="insulation">عایق و امنیت</button>
+      <button type="button" data-switch="editor">ویرایشگر تصویر</button>
+      <button type="button" data-switch="quote">استعلام قیمت</button>
+    </div>
+    <div class="modal-body" id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const root=document.documentElement.style,$=id=>document.getElementById(id);
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const SINK=180,RISE=500,DEPTH=.22;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const smooth=(a,b,x)=>{x=clamp((x-a)/(b-a));return x*x*(3-2*x)};
+let night=1,target=1,from=1,start=-1e9,queued=null,swapped=true,k=1,surge=0,porchBoost=1;
+
+/* لیست ۳ درب ارسالی کاربر برای نشستن روی چهارچوب */
+const DOORS=[
+  {
+    src:'./assets/aistudio/images__1__425ef8f4.jfif',
+    title:'مدل ۱ از ۳: کلاسیک چهارقاب گردو',
+    sub:'روکش چوب طبیعی گردو · یراق طلایی کاله'
+  },
+  {
+    src:'./assets/aistudio/images__2__886d0ea2.jfif',
+    title:'مدل ۲ از ۳: مدرن شیاردار افقی بلوط',
+    sub:'روکش چوب بلوط طبیعی · دستگیره شمش مشکی قدی'
+  },
+  {
+    src:'./assets/aistudio/images_7f757af8.jfif',
+    title:'مدل ۳ از ۳: ترکیبی لوور مشکی و ترمووود',
+    sub:'چهارچوب فولادی مات · پنل ترمووود و لوور فلزی'
+  }
+];
+let doorIndex=0;
+
+/* مختصات دقیق نرمال‌شده چهارچوب درب و پنجره قدی در تصویر ۱۶:۹ نمای کلی خانه */
+const DOOR_BOX={nx:0.6968, ny:0.5742, nw:0.0615, nh:0.1765};
+const WIN_BOX={nx:0.3550, ny:0.5620, nw:0.2300, nh:0.1880};
+/* مختصات دقیق چهارچوب درب در تصاویر کلوزآپ 8K ایوان (روز و شب) */
+const CLOSE_BOX_M={nx:0.4235, ny:0.3350, nw:0.1550, nh:0.4785};
+const CLOSE_BOX_N={nx:0.4368, ny:0.4465, nw:0.1268, nh:0.3790};
+const IMG_ASP=16/9;
+
+/* وضعیت زوم خطی و مستقیم به چهارچوب درب یا پنجره‌های خانه ('none' | 'door' | 'window') */
+let activeZoomMode='none';
+let doorZoomTarget=0,doorZoomFrom=0,doorZoomVal=0;
+let winZoomTarget=0,winZoomFrom=0,winZoomVal=0;
+let zoomStart=-1e9,zoomAnimating=false;
+const ZOOM_DUR=660;
+
+const EDITED_M='./src/assets/images/house_morning_edited_1793867923534.jpg';
+const EDITED_N='./src/assets/images/house_night_edited_1793867923697.jpg';
+const ORIG_M='https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040259_1be34093-835e-4de4-b3a8-f875e6a74591.png&w=2560&q=85';
+const ORIG_N='https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040211_c8fd4865-285e-4c1f-8a37-4bfe0771357b.png&w=2560&q=85';
+const MASK_M='https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040416_e3b05fa4-cc80-4a43-afde-8a0a053933e9.png&w=2560&q=85';
+const MASK_N='https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040415_2ab95096-8c39-449f-b36c-17c2813815a4.png&w=2560&q=85';
+let currentMode='edited';
+let imgSettings={bright:1,contrast:1,saturate:1};
+let forceCssSync=true;
+
+/* بارگذاری هوشمند و گرم نگه‌داشتن تکسچرها در حافظه GPU برای حذف کامل لگ در تمام تب‌ها */
+const decodedCache=new Set();
+function warmDecodeUrl(url){
+  if(!url||decodedCache.has(url))return;
+  decodedCache.add(url);
+  const im=new Image();
+  im.decoding='async';
+  im.src=url;
+  if(im.decode)im.decode().catch(()=>{});
+}
+function hydrateImage(el){
+  if(!el)return;
+  const ds=el.getAttribute('data-src');
+  if(ds){
+    el.removeAttribute('data-src');
+    el.src=ds;
+  }
+  if(el.src&&el.decode&&!decodedCache.has(el.src)){
+    decodedCache.add(el.src);
+    el.decode().catch(()=>{});
+  }
+}
+function preloadDoorAssets(forNight=night){
+  hydrateImage($(forNight?'closeBgN':'closeBgM'));
+  hydrateImage($(forNight?'closeBgM':'closeBgN'));
+  DOORS.forEach(d=>warmDecodeUrl(d.src));
+}
+function preloadWindowAssets(forNight=night){
+  const isMob=(document.documentElement.clientWidth||innerWidth)<=820;
+  if(isMob){
+    if(forNight){
+      hydrateImage($('winImgTripleCleanN'));
+      hydrateImage($('winImgDoubleCleanN'));
+      hydrateImage($('winImgTripleCleanM'));
+      hydrateImage($('winImgDoubleCleanM'));
+    }else{
+      hydrateImage($('winImgTripleCleanM'));
+      hydrateImage($('winImgDoubleCleanM'));
+      hydrateImage($('winImgTripleCleanN'));
+      hydrateImage($('winImgDoubleCleanN'));
+    }
+  }else{
+    if(forNight){
+      hydrateImage($('winImgTripleN'));
+      hydrateImage($('winImgDoubleN'));
+      hydrateImage($('winImgTripleM'));
+      hydrateImage($('winImgDoubleM'));
+    }else{
+      hydrateImage($('winImgTripleM'));
+      hydrateImage($('winImgDoubleM'));
+      hydrateImage($('winImgTripleN'));
+      hydrateImage($('winImgDoubleN'));
+    }
+  }
+}
+const scheduleIdle=window.requestIdleCallback||(cb=>setTimeout(cb,120));
+addEventListener('load',()=>{
+  /* بلافاصله پس از لود اولیه، تکسچرهای نمای روز و ماسک‌های آن در پس‌زمینه دیکود می‌شوند تا سوییچ روز/شب بدون هیچ مکثی انجام شود */
+  ['skyM','gndM','cutM','skyN','gndN','cutN'].forEach(id=>hydrateImage($(id)));
+  warmDecodeUrl(MASK_M);
+  warmDecodeUrl(MASK_N);
+  DOORS.forEach(d=>warmDecodeUrl(d.src));
+  scheduleIdle(()=>{
+    preloadDoorAssets(night);
+    preloadWindowAssets(night);
+  });
+},{once:true});
+
+const cv=$('fog'),gl=cv.getContext('webgl2',{alpha:true,premultipliedAlpha:true,antialias:false,powerPreference:'low-power'});
+let U={};
+if(gl){
+  const vs=`#version 300 es
+  void main(){vec2 p=vec2((gl_VertexID<<1)&2,gl_VertexID&2);gl_Position=vec4(p*2.-1.,0,1);}`;
+  const fs=`#version 300 es
+  precision highp float;
+  uniform vec2 R;uniform float T,S,K,P;out vec4 O;
+  float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
+  float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+    return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+  float fbm(vec2 p){float a=.5,s=0.;mat2 m=mat2(1.6,1.2,-1.2,1.6);p=mat2(.8,.6,-.6,.8)*p+5.3;for(int i=0;i<5;i++){s+=a*n(p);p=m*p;a*=.5;}return s;}
+  void main(){
+    vec2 uv=gl_FragCoord.xy/R;uv.y=1.-uv.y;
+    float asp=R.x/R.y;vec2 p=vec2(uv.x*asp,uv.y);
+    float t=T*.05;
+    vec2 w=vec2(fbm(p*1.3+vec2(t,-t*.6)),fbm(p*1.3+vec2(-t*.8,t)+7.));
+    float d=fbm(p*1.9+w*1.7+vec2(t*1.6,-t*1.1+S*.5));
+    float e=fbm(p*.9-w+vec2(-t,t*.5)+3.);
+    float low=smooth2(.70,1.04,uv.y+(d-.5)*.34);
+    float side=smooth2(.2,.0,uv.x+(e-.5)*.28)+smooth2(.8,1.,uv.x+(e-.5)*.28);
+    side*=smooth2(.25,.6,uv.y)*.2;
+    float wisps=smooth2(.5,.78,d)*smooth2(.22,.5,uv.y)*smooth2(.86,.6,uv.y)*.18;
+    float rest=clamp(low+side+wisps,0.,1.);
+    float front=1.02-S*.68;
+    float rise=smooth2(front-.02,front+.26,uv.y+(d-.5)*.5);
+    float haze=S*(.3+.46*d);
+    float a=clamp(max(rest,max(rise*.97,haze)),0.,1.);
+    vec3 dayA=vec3(.97,.93,.84),dayB=vec3(.79,.78,.71);
+    vec3 nitA=vec3(.40,.45,.57),nitB=vec3(.15,.19,.29);
+    vec3 c=mix(mix(dayB,dayA,d*1.15),mix(nitB,nitA,d*1.1),K);
+    float porch=exp(-dot((uv-vec2(.72,.74))*vec2(1.7,2.6),(uv-vec2(.72,.74))*vec2(1.7,2.6))*3.2);
+    c=mix(c,vec3(.86,.55,.27),clamp(K*porch*.42*P*(1.-S),0.,1.));
+    O=vec4(c*a,a);
+  }`.replace(/smooth2/g,'smoothstep');
+  const sh=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);
+    if(!gl.getShaderParameter(o,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(o));return o};
+  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));
+  gl.linkProgram(pr);gl.useProgram(pr);
+  for(const u of['R','T','S','K','P'])U[u]=gl.getUniformLocation(pr,u);
+}
+
+/* محاسبه مکان دقیق چهارچوب درب و پنجره در نمای کلی و کلوزآپ */
+let doorRect={left:0,top:0,width:0,height:0,cx:0,cy:0};
+let winRect={left:0,top:0,width:0,height:0,cx:0,cy:0};
+let closeRectM={left:0,top:0,width:0,height:0,cx:0,cy:0};
+let closeRectN={left:0,top:0,width:0,height:0,cx:0,cy:0};
+function calcCoverBox(box,posX,posY,W,H){
+  let renderW,renderH;
+  if(W/H>IMG_ASP){
+    renderW=W;
+    renderH=W/IMG_ASP;
+  }else{
+    renderH=H;
+    renderW=H*IMG_ASP;
+  }
+  const imgLeft=(W-renderW)*posX;
+  const imgTop=(H-renderH)*posY;
+  const left=imgLeft+box.nx*renderW;
+  const top=imgTop+box.ny*renderH;
+  const width=box.nw*renderW;
+  const height=box.nh*renderH;
+  return {left,top,width,height,cx:left+width/2,cy:top+height/2};
+}
+
+function calcCoverPoint(nx,ny,posX,posY,W,H){
+  let renderW,renderH;
+  if(W/H>IMG_ASP){
+    renderW=W;
+    renderH=W/IMG_ASP;
+  }else{
+    renderH=H;
+    renderW=H*IMG_ASP;
+  }
+  const imgLeft=(W-renderW)*posX;
+  const imgTop=(H-renderH)*posY;
+  return {x:imgLeft+nx*renderW, y:imgTop+ny*renderH};
+}
+
+/* سوییچ بین دو تصویر مقطع پنجره دوجداره و سه‌جداره + چیدمان مرتب کادرهای راهنمای موبایل بدون Forced Reflow */
+let glazeMode='triple';
+function updateWindowMobileCallouts(){
+  const W=document.documentElement.clientWidth||innerWidth;
+  const H=document.documentElement.clientHeight||innerHeight;
+  if(W>820)return;
+
+  const c1=$('mCallout1'),c2=$('mCallout2'),c3=$('mCallout3'),svg=$('winMobileLines');
+  if(!c1||!c2||!c3||!svg)return;
+
+  if(glazeMode==='triple'){
+    c1.textContent='سه لایه شیشه';
+    c2.textContent='دو فضای عایق';
+    c3.innerHTML='پروفیل UPVC<br>مناسب سه‌جداره';
+  }else{
+    c1.textContent='دو لایه شیشه';
+    c2.textContent='یک فضای عایق';
+    c3.innerHTML='پروفیل UPVC<br>مناسب دوجداره';
+  }
+
+  const posX=0.46,posY=0.50;
+  /* ۱. مختصات دقیق لایه‌های شیشه روی تصویر تمام‌صفحه موبایل */
+  const glassDots=glazeMode==='triple'
+    ?[
+      calcCoverPoint(0.488, 0.242, posX, posY, W, H),
+      calcCoverPoint(0.526, 0.242, posX, posY, W, H),
+      calcCoverPoint(0.564, 0.242, posX, posY, W, H)
+    ]
+    :[
+      calcCoverPoint(0.488, 0.242, posX, posY, W, H),
+      calcCoverPoint(0.564, 0.242, posX, posY, W, H)
+    ];
+  const y1=clamp(glassDots[0].y-26, 136, H*0.30);
+  c1.style.top=y1.toFixed(1)+'px';
+
+  /* ۲. مختصات دقیق فضای عایق بین شیشه‌ها */
+  const spaceDots=glazeMode==='triple'
+    ?[
+      calcCoverPoint(0.476, 0.448, posX, posY, W, H),
+      calcCoverPoint(0.523, 0.438, posX, posY, W, H)
+    ]
+    :[
+      calcCoverPoint(0.510, 0.415, posX, posY, W, H)
+    ];
+  const y2=clamp(spaceDots[0].y-(glazeMode==='triple'?26:0), y1+64, H*0.52);
+  c2.style.top=y2.toFixed(1)+'px';
+
+  /* ۳. مختصات دقیق دیواره پروفیل UPVC */
+  const upvcDot=calcCoverPoint(0.428, 0.685, posX, posY, W, H);
+  const y3=clamp(upvcDot.y, y2+74, H-135);
+  c3.style.top=y3.toFixed(1)+'px';
+  const maxC3W=Math.max(88, Math.min(130, upvcDot.x-24));
+  c3.style.maxWidth=maxC3W.toFixed(0)+'px';
+
+  /* استفاده از عرض دقیق بدون خواندن همزمان offsetWidth جهت جلوگیری از Forced Synchronous Layout */
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const r1=10+(glazeMode==='triple'?92:88);
+  const r2=10+(glazeMode==='triple'?88:92);
+  const r3=10+Math.min(maxC3W,98);
+
+  let paths='';
+  let circles='';
+  const addLine=pts=>{
+    const d=pts.map((p,i)=>`${i?'L':'M'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    paths+=`<path d="${d}" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>`;
+    paths+=`<path d="${d}" fill="none" stroke="#991b1b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`;
+  };
+  const addDot=p=>{
+    circles+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" fill="#991b1b" stroke="#ffffff" stroke-width="1.5"/>`;
+  };
+
+  /* خطوط شیشه‌ها */
+  const lastGlassElbowX=glassDots[glassDots.length-1].x-18;
+  addLine([{x:r1,y:y1},{x:lastGlassElbowX,y:y1}]);
+  glassDots.forEach(gd=>{
+    const elbowX=Math.max(r1+8, gd.x-18);
+    addLine([{x:elbowX,y:y1},{x:gd.x,y:gd.y}]);
+    addDot(gd);
+  });
+
+  /* خطوط فضای عایق */
+  if(glazeMode==='triple'){
+    const lastSpaceElbowX=spaceDots[spaceDots.length-1].x-20;
+    addLine([{x:r2,y:y2},{x:lastSpaceElbowX,y:y2}]);
+    spaceDots.forEach(sd=>{
+      const elbowX=Math.max(r2+8, sd.x-20);
+      addLine([{x:elbowX,y:y2},{x:sd.x,y:sd.y}]);
+      addDot(sd);
+    });
+  }else{
+    addLine([{x:r2,y:y2},{x:spaceDots[0].x,y:y2}]);
+    addDot({x:spaceDots[0].x,y:y2});
+  }
+
+  /* خط پروفیل UPVC */
+  const target3X=Math.max(r3+10, upvcDot.x);
+  addLine([{x:r3,y:y3},{x:target3X,y:y3}]);
+  addDot({x:target3X,y:y3});
+
+  svg.innerHTML=paths+circles;
+}
+
+function renderWindowAnatomy(mode){
+  if(glazeMode===mode)return;
+  glazeMode=mode;
+  const winScene=$('windowScene');
+  winScene.classList.toggle('is-double',mode==='double');
+  $('btnDoubleGlaze').classList.toggle('is-active',mode==='double');
+  $('btnTripleGlaze').classList.toggle('is-active',mode==='triple');
+  if(mode==='triple'){
+    $('winTitle').textContent='مقطع پنجره سه‌جداره سوپر آکوستیک';
+    $('winSub').textContent='۳ لایه شیشه · ۲ فضای عایق آرگون · کاهش ۴۷ دسی‌بل صدا';
+  }else{
+    $('winTitle').textContent='مقطع پنجره دوجداره استاندارد ترمال';
+    $('winSub').textContent='۲ لایه شیشه · ۱ فضای عایق آرگون · کاهش ۳۸ دسی‌بل صدا';
+  }
+  updateWindowMobileCallouts();
+}
+
+function positionDoorNavButtons(){
+  const W=document.documentElement.clientWidth||innerWidth;
+  const H=document.documentElement.clientHeight||innerHeight;
+  const isMobile=W<=820;
+  const activeRect=night?closeRectN:closeRectM;
+  const edgePad=isMobile?28:46;
+  const outerOffset=isMobile?Math.min(activeRect.width*0.68+32, (W/2)-edgePad):Math.max(activeRect.width*1.32, 230);
+  const prevBtn=$('prevDoorBtn'),nextBtn=$('nextDoorBtn');
+  if(prevBtn&&nextBtn){
+    const safeDoorY=clamp(activeRect.cy, isMobile?170:120, H-(isMobile?130:100));
+    prevBtn.style.left=clamp(activeRect.cx+outerOffset, edgePad, W-edgePad)+'px';
+    prevBtn.style.top=safeDoorY+'px';
+    prevBtn.style.transform='translate(-50%, -50%)';
+    nextBtn.style.left=clamp(activeRect.cx-outerOffset, edgePad, W-edgePad)+'px';
+    nextBtn.style.top=safeDoorY+'px';
+    nextBtn.style.transform='translate(-50%, -50%)';
+  }
+}
+
+function updateDoorGeometry(){
+  const W=document.documentElement.clientWidth||innerWidth;
+  const H=document.documentElement.clientHeight||innerHeight;
+  const isMobile=W<=820;
+
+  /* ۱. کادر درب و پنجره روی نمای کلی خانه */
+  doorRect=calcCoverBox(DOOR_BOX, isMobile?0.72:0.50, 0.62, W, H);
+  const dm=$('doorMount');
+  dm.style.left=doorRect.left.toFixed(2)+'px';
+  dm.style.top=doorRect.top.toFixed(2)+'px';
+  dm.style.width=doorRect.width.toFixed(2)+'px';
+  dm.style.height=doorRect.height.toFixed(2)+'px';
+
+  winRect=calcCoverBox(WIN_BOX, isMobile?0.72:0.50, 0.62, W, H);
+  const wh=$('winHotspot');
+  wh.style.left=winRect.left.toFixed(2)+'px';
+  wh.style.top=winRect.top.toFixed(2)+'px';
+  wh.style.width=winRect.width.toFixed(2)+'px';
+  wh.style.height=winRect.height.toFixed(2)+'px';
+
+  /* ۲. کادر درب روی نمای کلوزآپ روز */
+  closeRectM=calcCoverBox(CLOSE_BOX_M, 0.50, 0.62, W, H);
+  const sm=$('closeSlotM');
+  sm.style.left=closeRectM.left.toFixed(2)+'px';
+  sm.style.top=closeRectM.top.toFixed(2)+'px';
+  sm.style.width=closeRectM.width.toFixed(2)+'px';
+  sm.style.height=closeRectM.height.toFixed(2)+'px';
+
+  /* ۳. کادر درب روی نمای کلوزآپ شب */
+  closeRectN=calcCoverBox(CLOSE_BOX_N, 0.50, 0.62, W, H);
+  const sn=$('closeSlotN');
+  sn.style.left=closeRectN.left.toFixed(2)+'px';
+  sn.style.top=closeRectN.top.toFixed(2)+'px';
+  sn.style.width=closeRectN.width.toFixed(2)+'px';
+  sn.style.height=closeRectN.height.toFixed(2)+'px';
+
+  /* ۴. تنظیم مکان دکمه‌های چپ و راست کاملاً بیرون از چهارچوب درب و درون کادر صفحه */
+  positionDoorNavButtons();
+  const cornerPanel=$('doorCornerPanel');
+  if(cornerPanel){
+    cornerPanel.style.top=isMobile?'12px':'';
+  }
+
+  /* ۵. تنظیم مکان دکمه‌های چپ و راست و کادرهای راهنما در نمای مقطع پنجره */
+  const prevWin=$('prevWinBtn'),nextWin=$('nextWinBtn'),winCorner=$('winCornerPanel');
+  if(prevWin&&nextWin){
+    const winBtnY=H*0.50;
+    const winPad=54;
+    prevWin.style.left=(W-winPad)+'px';
+    prevWin.style.top=winBtnY+'px';
+    prevWin.style.transform='translate(-50%, -50%)';
+    nextWin.style.left=winPad+'px';
+    nextWin.style.top=winBtnY+'px';
+    nextWin.style.transform='translate(-50%, -50%)';
+  }
+  if(winCorner){
+    winCorner.style.top=isMobile?'12px':'';
+  }
+  updateWindowMobileCallouts();
+}
+
+function size(){
+  const W=document.documentElement.clientWidth||innerWidth;
+  const H=document.documentElement.clientHeight||innerHeight;
+  if(gl){
+    const maxW=W<=820?540:960;
+    const w=Math.round(Math.min(W,maxW)),h=Math.round(w*H/W);
+    if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;gl.viewport(0,0,w,h)}
+  }
+  if(activeZoomMode==='window')preloadWindowAssets(night);
+  forceCssSync=true;
+  updateDoorGeometry();
+}
+let resizeRaf=0;
+addEventListener('resize',()=>{
+  if(resizeRaf)cancelAnimationFrame(resizeRaf);
+  resizeRaf=requestAnimationFrame(()=>{resizeRaf=0;size()});
+},{passive:true});
+size();
+
+/* جابه‌جایی آنی و بدون مکث بین ۳ مدل درب (تمام تصاویر از قبل دیکود شده‌اند) */
+function selectDoor(idx){
+  const nextIdx=(idx+DOORS.length)%DOORS.length;
+  if(nextIdx===doorIndex)return;
+  doorIndex=nextIdx;
+  const d=DOORS[doorIndex];
+  const imgs=[$('doorMountImg'),$('closeDoorImgM'),$('closeDoorImgN')];
+  imgs.forEach(im=>{if(im)im.src=d.src});
+  $('doorTitle').textContent=d.title;
+  $('doorSub').textContent=d.sub;
+  document.querySelectorAll('.door-thumb').forEach((b,i)=>{
+    b.classList.toggle('is-active',i===doorIndex);
+  });
+}
+
+function setZoomMode(mode){
+  const nextMode=(mode===activeZoomMode)?'none':mode;
+  if(nextMode==='door')preloadDoorAssets(night);
+  if(nextMode==='window')preloadWindowAssets(night);
+  activeZoomMode=nextMode;
+  doorZoomTarget=(nextMode==='door')?1:0;
+  winZoomTarget=(nextMode==='window')?1:0;
+
+  if(calm){
+    doorZoomVal=doorZoomTarget;
+    winZoomVal=winZoomTarget;
+    zoomAnimating=false;
+    forceCssSync=true;
+  }else{
+    doorZoomFrom=doorZoomVal;
+    winZoomFrom=winZoomVal;
+    zoomStart=performance.now();
+    clock=zoomStart;
+    zoomAnimating=true;
+  }
+
+  const dBtn=$('toggleDoorZoomBtn'),dLbl=$('toggleDoorZoomLabel'),dStage=$('doorStageUI');
+  const wBtn=$('toggleWinZoomBtn'),wLbl=$('toggleWinZoomLabel'),wStage=$('windowStageUI');
+  const topBar=$('topBar');
+  if(topBar)topBar.classList.toggle('is-zoomed-mobile',nextMode!=='none');
+
+  dBtn.classList.toggle('is-active',nextMode==='door');
+  dLbl.textContent=(nextMode==='door')?'بازگشت به نمای کلی':'مشاهده درب‌ها';
+  if(nextMode==='door')dStage.classList.remove('is-hidden');
+
+  wBtn.classList.toggle('is-active',nextMode==='window');
+  wLbl.textContent=(nextMode==='window')?'بازگشت به نمای کلی':'مشاهده پنجره‌ها';
+  if(nextMode==='window'){
+    wStage.classList.remove('is-hidden');
+    requestAnimationFrame(updateWindowMobileCallouts);
+  }
+}
+
+['bm','bn'].forEach(id=>{
+  const el=$(id);
+  if(el){
+    el.addEventListener('pointerenter',()=>{preloadDoorAssets(0);preloadWindowAssets(0)},{passive:true});
+    el.addEventListener('touchstart',()=>{preloadDoorAssets(0);preloadWindowAssets(0)},{passive:true});
+  }
+});
+['toggleDoorZoomBtn','navZoomDoorsBtn','doorMount'].forEach(id=>{
+  const el=$(id);
+  if(el){
+    el.addEventListener('pointerenter',()=>preloadDoorAssets(night),{passive:true});
+    el.addEventListener('touchstart',()=>preloadDoorAssets(night),{passive:true});
+  }
+});
+['toggleWinZoomBtn','navZoomWinBtn','winHotspot'].forEach(id=>{
+  const el=$(id);
+  if(el){
+    el.addEventListener('pointerenter',()=>preloadWindowAssets(night),{passive:true});
+    el.addEventListener('touchstart',()=>preloadWindowAssets(night),{passive:true});
+  }
+});
+
+$('toggleDoorZoomBtn').onclick=()=>setZoomMode('door');
+$('toggleWinZoomBtn').onclick=()=>setZoomMode('window');
+$('navZoomDoorsBtn').onclick=()=>setZoomMode('door');
+$('navZoomWinBtn').onclick=()=>setZoomMode('window');
+$('doorMount').onclick=()=>{if(activeZoomMode!=='door')setZoomMode('door')};
+$('winHotspot').onclick=()=>{if(activeZoomMode!=='window')setZoomMode('window')};
+
+$('prevDoorBtn').onclick=()=>selectDoor(doorIndex-1);
+$('nextDoorBtn').onclick=()=>selectDoor(doorIndex+1);
+document.querySelectorAll('.door-thumb').forEach(btn=>{
+  btn.onclick=()=>selectDoor(Number(btn.dataset.doorIdx));
+});
+
+$('btnDoubleGlaze').onclick=()=>renderWindowAnatomy('double');
+$('btnTripleGlaze').onclick=()=>renderWindowAnatomy('triple');
+$('prevWinBtn').onclick=()=>renderWindowAnatomy(glazeMode==='triple'?'double':'triple');
+$('nextWinBtn').onclick=()=>renderWindowAnatomy(glazeMode==='triple'?'double':'triple');
+
+const camEl=$('camera'),homeEl=$('homeLayer'),skyNEl=$('skyN'),setMEl=$('setM'),setNEl=$('setN');
+const closeSceneEl=$('closeupScene'),closeSetMEl=$('closeSetM'),closeSetNEl=$('closeSetN');
+const winSceneEl=$('windowScene'),winSetMEl=$('winSetM'),winSetNEl=$('winSetN');
+const doorStageEl=$('doorStageUI'),winStageEl=$('windowStageUI');
+const tiltEl=document.querySelector('.tilt'),linksEl=document.querySelector('.links'),sideBtnEl=document.querySelector('.side>button:first-child'),ctaEl=document.querySelector('.cta'),h1El=document.querySelector('h1'),capEl=document.querySelector('.cap');
+
+function show(n){
+  setMEl.classList.toggle('is-on',!n);setNEl.classList.toggle('is-on',!!n);
+  closeSetMEl.classList.toggle('is-on',!n);closeSetNEl.classList.toggle('is-on',!!n);
+  positionDoorNavButtons();
+}
+function pick(n){
+  if(n===target&&queued===null)return;
+  if(!n){preloadDoorAssets(0);preloadWindowAssets(0);}
+  /* تغییر آنی وضعیت دکمه‌ها و تم رنگی در همان میلی‌ثانیه اول کلیک */
+  $('bm').setAttribute('aria-pressed',!n);
+  $('bn').setAttribute('aria-pressed',!!n);
+  document.body.classList.toggle('is-day',!n);
+  if(calm){target=night=n;k=n;forceCssSync=true;show(n);return}
+  const now=performance.now();
+  clock=now;
+  /* اگر کاربر حتی وسط انیمیشن قبلی دوباره کلیک کرد، بلافاصله از همان وضعیت فعلی به سمت تب جدید حرکت کند */
+  begin(n,now);
+}
+let animating=false,clock=0,lastGlDraw=0,rafId=0;
+function begin(n,now){
+  target=n;
+  from=k;
+  start=now;
+  swapped=false;
+  queued=null;
+  animating=true;
+}
+$('bm').onclick=()=>pick(0);$('bn').onclick=()=>pick(1);
+$('logoBtn').onclick=(e)=>{e.preventDefault();if(activeZoomMode!=='none')setZoomMode('none');else pick(target?0:1)};
+
+function frame(now){
+  clock=now;
+  const wasActive=animating||zoomAnimating||forceCssSync;
+  const d=now-start;let y=0,s=0,dip=0;
+  if(animating){
+    /* در حالت زوم پنجره، تغییر روز و شب مستقیماً و بسیار نرم روی پنجره انجام می‌شود بدون نیاز به حرکت نمای بیرونی */
+    if(activeZoomMode==='window'){
+      if(!swapped){swapped=true;night=target;show(target)}
+      k=from+(target-from)*smooth(0,360,d);
+      if(d>=360){animating=false;k=target;y=s=dip=0}
+    }else{
+      if(d<SINK){const x=d/SINK;y=x*x*(3-2*x)*DEPTH}
+      else{
+        if(!swapped){swapped=true;night=target;show(target)}
+        const x=clamp((d-SINK)/RISE);y=Math.pow(1-x,3.2)*DEPTH;
+      }
+      s=smooth(0,SINK*.92,d)*(1-smooth(SINK+40,SINK+RISE*.9,d));
+      dip=smooth(15,140,d)*(1-smooth(240,540,d));
+      k=from+(target-from)*smooth(30,420,d);
+      if(d>=SINK+RISE){animating=false;k=target;y=s=dip=0}
+    }
+  }
+
+  /* انیمیشن زوم سینمایی، تیز و خطی به سمت چهارچوب درب یا پنجره‌های خانه */
+  if(zoomAnimating){
+    const zd=now-zoomStart;
+    const zx=clamp(zd/ZOOM_DUR);
+    /* منحنی Cubic فوق‌العاده واکنش‌گرا که به محض کلیک حرکت را آغاز می‌کند */
+    const ze=zx<0.5?4*zx*zx*zx:1-Math.pow(-2*zx+2,3)/2;
+    doorZoomVal=doorZoomFrom+(doorZoomTarget-doorZoomFrom)*ze;
+    winZoomVal=winZoomFrom+(winZoomTarget-winZoomFrom)*ze;
+    if(zd>=ZOOM_DUR){
+      doorZoomVal=doorZoomTarget;
+      winZoomVal=winZoomTarget;
+      zoomAnimating=false;
+      if(!doorZoomTarget)doorStageEl.classList.add('is-hidden');
+      if(!winZoomTarget)winStageEl.classList.add('is-hidden');
+    }
+  }
+
+  if(wasActive){
+    forceCssSync=false;
+    const totalZoom=clamp(doorZoomVal+winZoomVal, 0, 1);
+    const W=innerWidth,H=innerHeight;
+    const isMobile=W<=820;
+    const doorMaxScale=isMobile?2.35:2.55;
+    const winMaxScale=isMobile?3.25:3.85;
+    const curScale=1+(doorMaxScale-1)*doorZoomVal+(winMaxScale-1)*winZoomVal;
+
+    const doorFinalTx=(W*0.50)-doorRect.cx*doorMaxScale;
+    const doorFinalTy=(H*0.54)-doorRect.cy*doorMaxScale;
+
+    const winFinalTx=(W*0.50)-winRect.cx*winMaxScale;
+    const winFinalTy=(H*0.52)-winRect.cy*winMaxScale;
+
+    const tx=doorFinalTx*doorZoomVal + winFinalTx*winZoomVal;
+    const ty=doorFinalTy*doorZoomVal + winFinalTy*winZoomVal;
+
+    const closeAlpha=smooth(0.18,0.86,doorZoomVal);
+    const closeScale=(0.72+0.28*doorZoomVal)*(1-y*0.16);
+
+    const winAlpha=smooth(0.38,0.88,winZoomVal);
+    const winSceneScale=1.12-0.12*smooth(0.35,0.96,winZoomVal);
+
+    const effectiveSink=y*H*(1-totalZoom*0.72);
+
+    /* اعمال مستقیم استایل‌ها روی لایه‌های GPU بدون دست زدن به :root جهت حذف کامل لگ محاسبات CSS */
+    camEl.style.transform=`translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0) scale(${curScale.toFixed(4)})`;
+    homeEl.style.transform=`translate3d(0,${effectiveSink.toFixed(1)}px,0)`;
+    skyNEl.style.opacity=k.toFixed(3);
+
+    closeSceneEl.style.opacity=closeAlpha.toFixed(3);
+    closeSceneEl.style.transform=`translate3d(0,${(y*H*0.24).toFixed(1)}px,0) scale(${closeScale.toFixed(4)})`;
+
+    winSceneEl.style.opacity=winAlpha.toFixed(3);
+    winSceneEl.style.transform=`scale(${winSceneScale.toFixed(4)})`;
+    winSetNEl.style.opacity=k.toFixed(3);
+
+    cv.style.opacity=((1-closeAlpha*0.72)*(1-winAlpha*0.94)).toFixed(3);
+    if(tiltEl)tiltEl.style.opacity=(1-totalZoom).toFixed(3);
+    doorStageEl.style.opacity=closeAlpha.toFixed(3);
+    winStageEl.style.opacity=winAlpha.toFixed(3);
+
+    const navOp=((1-dip*0.82)*(1-totalZoom*0.85)).toFixed(3);
+    if(linksEl)linksEl.style.opacity=navOp;
+    if(sideBtnEl)sideBtnEl.style.opacity=(1-dip*0.82).toFixed(3);
+    if(ctaEl)ctaEl.style.opacity=(1-dip*0.62).toFixed(3);
+    if(h1El){
+      h1El.style.opacity=clamp((1-totalZoom*1.5)*(1-dip*0.75),0,1).toFixed(3);
+      h1El.style.transform=`translate3d(0,${(totalZoom*-24).toFixed(1)}px,0)`;
+    }
+    if(capEl)capEl.style.opacity=clamp(1-totalZoom*2,0,1).toFixed(3);
+
+    const hasCustomFilter=(imgSettings.bright!==1||imgSettings.contrast!==1||imgSettings.saturate!==1);
+    closeSceneEl.classList.toggle('is-culled',closeAlpha<=0.001);
+    winSceneEl.classList.toggle('is-culled',winAlpha<=0.001);
+    camEl.classList.toggle('is-culled',closeAlpha>=0.999||winAlpha>=0.999);
+    winSceneEl.classList.toggle('has-scene-filter',hasCustomFilter);
+    winSetMEl.classList.toggle('is-culled',k>=0.999);
+    winSetNEl.classList.toggle('is-culled',k<=0.001);
+  }
+
+  if(gl){
+    const winOpaque=(winZoomVal>=0.98&&!animating&&!zoomAnimating);
+    const shouldDrawGl=!winOpaque&&(wasActive||(now-lastGlDraw>=32));
+    if(shouldDrawGl){
+      lastGlDraw=now;
+      gl.uniform2f(U.R,cv.width,cv.height);
+      gl.uniform1f(U.T,now/1000);
+      gl.uniform1f(U.S,s);
+      gl.uniform1f(U.K,k);
+      gl.uniform1f(U.P,porchBoost);
+      gl.drawArrays(gl.TRIANGLES,0,3);
+    }
+  }
+}
+function loop(t){
+  if(document.hidden){rafId=0;return}
+  frame(t);
+  rafId=requestAnimationFrame(loop);
+}
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden&&!rafId){
+    forceCssSync=true;
+    rafId=requestAnimationFrame(loop);
+  }
+});
+rafId=requestAnimationFrame(loop);
+
+function applyFacadeSource(mode){
+  currentMode=mode;
+  const mSrc=mode==='edited'?EDITED_M:ORIG_M;
+  const nSrc=mode==='edited'?EDITED_N:ORIG_N;
+  $('gndM').src=mSrc;$('cutM').src=mSrc;
+  $('gndN').src=nSrc;$('cutN').src=nSrc;
+}
+
+/* Modal & Interactive Views */
+const tabData={
+  doors:`
+    <p>هر ۳ مدل درب ضد سرقت را می‌توانید با زدن دکمه <strong>«مشاهده درب‌ها»</strong> در نمای نزدیک با کیفیت بالا (8K) مستقیماً روی چهارچوب ورودی همین خانه در حالت روز و شب تست و مقایسه کنید:</p>
+    <div class="spec-grid">
+      <div class="spec-item"><strong>مدل ۱: کلاسیک چهارقاب گردو</strong><span>روکش چوب طبیعی گردو آمریکایی، یراق و دستگیره طلایی کاله، ورق فولادی سرتاسری</span></div>
+      <div class="spec-item"><strong>مدل ۲: مدرن شیاردار افقی بلوط</strong><span>روکش بلوط طبیعی با دستگیره شمش مشکی قدی و دو قفل امنیتی مجزا</span></div>
+      <div class="spec-item"><strong>مدل ۳: ترکیبی لوور مشکی و ترمووود</strong><span>طراحی مدرن نئوکلاسیک با چهارچوب مشکی مات، پنل لوور فلزی و چوب ترمو</span></div>
+      <div class="spec-item"><strong>عایق صوتی و ضد دیلم RC3</strong><span>عایق پشم سنگ دانسیته ۱۰۰ و پروفیل‌کشی فولادی شبکه‌ای با ۱۰ سال گارانتی</span></div>
+    </div>
+  `,
+  windows:`
+    <p>با کلیک روی دکمه <strong>«مشاهده پنجره‌ها»</strong> در نوار کف صفحه، دوربین به سمت پنجره خانه زوم کرده و تصویر مقطع فنی پنجره را در دو حالت <strong>دوجداره (۲ لایه شیشه و ۱ فضای عایق)</strong> و <strong>سه‌جداره (۳ لایه شیشه و ۲ فضای عایق)</strong> نمایش می‌دهد:</p>
+    <div class="spec-grid">
+      <div class="spec-item"><strong>پنجره دوجداره و سه‌جداره UPVC / ترمال</strong><span>مجهز به ۲ یا ۳ لایه شیشه سکوریت و ۱ یا ۲ محفظه گاز آرگون با خلوص ۹۵٪</span></div>
+      <div class="spec-item"><strong>گالوانیزه فولادی ۱.۵ میلی‌متر</strong><span>تقویت کامل هسته مرکزی پروفیل در برابر فشار باد و نشست بازشوها</span></div>
+      <div class="spec-item"><strong>اسپیسر آلومینیومی و سیلیکاژل</strong><span>جذب کامل رطوبت فضای بین شیشه‌ها جهت جلوگیری دائمی از بخارزدگی</span></div>
+      <div class="spec-item"><strong>نوارهای درزگیر EPDM آلمانی</strong><span>آب‌بندی و صداگیری کامل درزها با کاهش تراز صوتی تا ۴۷ دسی‌بل</span></div>
+    </div>
+  `,
+  insulation:`
+    <p>مقایسه عملکرد حرارتی و امنیتی ساختمان در حالت روز (تابش خورشید و ترافیک شهری) و شب (سرمای محیط و حفاظت پیرامونی):</p>
+    <div class="spec-grid">
+      <div class="spec-item"><strong>حالت عایق روزانه (Morning)</strong><span>بازتاب ۷۸٪ تابش مادون قرمز خورشید با شیشه‌های Low-E و حفظ خنکی فضای داخلی</span></div>
+      <div class="spec-item"><strong>حالت امنیت شبانه (Night)</strong><span>قفل اتوماتیک چهارجهته، نورپردازی LED دور چهارچوب درب ضد سرقت و حفظ گرمای خانه</span></div>
+      <div class="spec-item"><strong>صرفه‌جویی ۵۵٪ در مصرف انرژی</strong><span>حذف کامل نشت هوا از دور بازشوها و بازگشت سرمایه از طریق کاهش قبض انرژی</span></div>
+      <div class="spec-item"><strong>استاندارد EN 1627 اروپا</strong><span>دارای گواهی مقاومت کلاس RC3 در برابر نفوذ و سرقت برای درب و پنجره</span></div>
+    </div>
+  `,
+  editor:`
+    <p>از این بخش می‌توانید نسخه نما را تغییر دهید یا نور و کنتراست تصویر را تنظیم کنید:</p>
+    <div class="quote-form">
+      <div class="quote-row">
+        <div class="field">
+          <label for="edMode">نسخه تصویر نما</label>
+          <select id="edMode">
+            <option value="edited">نمای ادیت‌شده (درب ضد سرقت و پنجره قدی بدون پنل خورشیدی)</option>
+            <option value="orig">نمای اولیه (دارای پنل خورشیدی روی سقف)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="edPorch"><span>شدت درخشش نور درب و ایوان در شب</span><span id="edPorchVal">100%</span></label>
+          <input id="edPorch" type="range" min="0" max="2" step="0.05" value="1">
+        </div>
+      </div>
+      <div class="quote-row">
+        <div class="field">
+          <label for="edBright"><span>روشنایی تصویر (Brightness)</span><span id="edBrightVal">100%</span></label>
+          <input id="edBright" type="range" min="0.75" max="1.3" step="0.02" value="1">
+        </div>
+        <div class="field">
+          <label for="edContrast"><span>کنتراست و وضوح (Contrast)</span><span id="edContrastVal">100%</span></label>
+          <input id="edContrast" type="range" min="0.8" max="1.35" step="0.02" value="1">
+        </div>
+      </div>
+      <button type="button" class="quote-submit" id="edReset">بازگردانی به تنظیمات پیش‌فرض ادیت‌شده</button>
+    </div>
+  `,
+  quote:`
+    <form class="quote-form" id="quoteForm">
+      <div class="quote-row">
+        <div class="field">
+          <label for="qType">نوع محصول</label>
+          <select id="qType">
+            <option value="18500000">درب ضد سرقت مدل ۱: کلاسیک چهارقاب گردو</option>
+            <option value="21500000">درب ضد سرقت مدل ۲: مدرن شیاردار بلوط</option>
+            <option value="24800000">درب ضد سرقت مدل ۳: ترکیبی لوور مشکی و ترمووود</option>
+            <option value="6800000">پنجره دوجداره UPVC عایق (هر مترمربع)</option>
+            <option value="9400000">پنجره سه‌جداره سوپر آکوستیک (هر مترمربع)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="qQty">تعداد لنگه یا متراژ تقریبی</label>
+          <input id="qQty" type="number" min="1" max="200" value="1">
+        </div>
+      </div>
+      <div class="quote-row">
+        <div class="field">
+          <label for="qGlass">سطح شیشه و قفل امنیتی</label>
+          <select id="qGlass">
+            <option value="1">استاندارد (قفل کاله ترکیه / شیشه دوجداره آرگون)</option>
+            <option value="1.22">ویژه (قفل دیجیتال هوشمند / شیشه لمینت ضد سرقت)</option>
+            <option value="1.35">فول‌آپشن VIP (سه‌جداره Low-E + سیستم امنیتی کامل)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="qPhone">شماره تماس جهت ارسال پیش‌فاکتور</label>
+          <input id="qPhone" type="tel" placeholder="09123456789" required>
+        </div>
+      </div>
+      <div class="quote-estimate">
+        <span>برآورد اولیه هزینه اجرا و نصب:</span>
+        <strong id="qTotal">۱۸,۵۰۰,۰۰۰ تومان</strong>
+      </div>
+      <button type="submit" class="quote-submit">ثبت درخواست بازدید رایگان و پیش‌فاکتور</button>
+      <div class="quote-msg" id="qMsg"></div>
+    </form>
+  `
+};
+
+const modal=$('infoModal'),modalContent=$('modalContent');
+function updateQuoteCalc(){
+  const typeEl=$('qType'),qtyEl=$('qQty'),glassEl=$('qGlass'),totalEl=$('qTotal');
+  if(!typeEl||!qtyEl||!glassEl||!totalEl)return;
+  const base=Number(typeEl.value)||0;
+  const qty=Math.max(1,Number(qtyEl.value)||1);
+  const mult=Number(glassEl.value)||1;
+  const sum=Math.round((base*qty*mult)/100000)*100000;
+  totalEl.textContent=sum.toLocaleString('fa-IR')+' تومان';
+}
+function wireEditorControls(){
+  const modeEl=$('edMode'),porchEl=$('edPorch'),brightEl=$('edBright'),contrastEl=$('edContrast'),resetEl=$('edReset');
+  if(!modeEl)return;
+  modeEl.value=currentMode;
+  porchEl.value=porchBoost;
+  brightEl.value=imgSettings.bright;
+  contrastEl.value=imgSettings.contrast;
+  $('edPorchVal').textContent=Math.round(porchBoost*100)+'%';
+  $('edBrightVal').textContent=Math.round(imgSettings.bright*100)+'%';
+  $('edContrastVal').textContent=Math.round(imgSettings.contrast*100)+'%';
+
+  modeEl.onchange=()=>{applyFacadeSource(modeEl.value)};
+  porchEl.oninput=()=>{
+    porchBoost=Number(porchEl.value);
+    forceCssSync=true;
+    $('edPorchVal').textContent=Math.round(porchBoost*100)+'%';
+  };
+  const syncFilterClasses=()=>{
+    const hasCustom=(imgSettings.bright!==1||imgSettings.contrast!==1||imgSettings.saturate!==1);
+    homeEl.classList.toggle('has-img-filter',hasCustom);
+    closeSceneEl.classList.toggle('has-img-filter',hasCustom);
+    forceCssSync=true;
+  };
+  brightEl.oninput=()=>{
+    imgSettings.bright=Number(brightEl.value);
+    root.setProperty('--img-bright',imgSettings.bright);
+    $('edBrightVal').textContent=Math.round(imgSettings.bright*100)+'%';
+    syncFilterClasses();
+  };
+  contrastEl.oninput=()=>{
+    imgSettings.contrast=Number(contrastEl.value);
+    root.setProperty('--img-contrast',imgSettings.contrast);
+    $('edContrastVal').textContent=Math.round(imgSettings.contrast*100)+'%';
+    syncFilterClasses();
+  };
+  resetEl.onclick=()=>{
+    applyFacadeSource('edited');
+    porchBoost=1;
+    imgSettings={bright:1,contrast:1,saturate:1};
+    root.setProperty('--img-bright',1);
+    root.setProperty('--img-contrast',1);
+    syncFilterClasses();
+    wireEditorControls();
+  };
+}
+let modalBuilt=false;
+const modalSwitchBtns=Array.from(document.querySelectorAll('[data-switch]'));
+const modalPanes={};
+function ensureModalBuilt(){
+  if(modalBuilt)return;
+  modalBuilt=true;
+  modalContent.innerHTML='';
+  Object.keys(tabData).forEach(k=>{
+    const pane=document.createElement('div');
+    pane.className='modal-pane';
+    pane.innerHTML=tabData[k];
+    modalContent.appendChild(pane);
+    modalPanes[k]=pane;
+  });
+  wireEditorControls();
+  updateQuoteCalc();
+  ['qType','qQty','qGlass'].forEach(id=>{const el=$(id);if(el)el.oninput=updateQuoteCalc});
+  const form=$('quoteForm');
+  if(form){
+    form.onsubmit=(e)=>{
+      e.preventDefault();
+      const phone=$('qPhone').value.trim();
+      if(phone.length<10){$('qMsg').textContent='لطفاً شماره تماس معتبر وارد نمایید.';return}
+      $('qMsg').textContent='درخواست شما با موفقیت ثبت شد. کارشناسان فنی ما ظرف ۱۵ دقیقه با شما تماس می‌گیرند.';
+    };
+  }
+}
+function openTab(key){
+  ensureModalBuilt();
+  const targetKey=modalPanes[key]?key:'doors';
+  modalSwitchBtns.forEach(b=>b.classList.toggle('active',b.dataset.switch===targetKey));
+  Object.keys(modalPanes).forEach(k=>{
+    modalPanes[k].classList.toggle('is-active-pane',k===targetKey);
+  });
+  modal.classList.add('is-open');
+}
+document.querySelectorAll('[data-tab]').forEach(btn=>{
+  btn.onclick=()=>openTab(btn.dataset.tab);
+});
+modalSwitchBtns.forEach(btn=>{
+  btn.onclick=()=>openTab(btn.dataset.switch);
+});
+$('closeModal').onclick=()=>modal.classList.remove('is-open');
+modal.onclick=(e)=>{if(e.target===modal)modal.classList.remove('is-open')};
+addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    if(modal.classList.contains('is-open'))modal.classList.remove('is-open');
+    else if(activeZoomMode!=='none')setZoomMode('none');
+  }
+  if(activeZoomMode==='door'&&!modal.classList.contains('is-open')){
+    if(e.key==='ArrowLeft')selectDoor(doorIndex+1);
+    if(e.key==='ArrowRight')selectDoor(doorIndex-1);
+  }
+  if(activeZoomMode==='window'&&!modal.classList.contains('is-open')){
+    if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+      renderWindowAnatomy(glazeMode==='triple'?'double':'triple');
+    }
+  }
+});
+</script>
+</body>
+</html>
